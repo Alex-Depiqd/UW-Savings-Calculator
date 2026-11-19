@@ -9,7 +9,7 @@ Versions live in `package.json` and as GitHub tags `vMAJOR.MINOR.0`. This projec
 
 - Before a normal commit, run `node scripts/bump-version.mjs` and stage `package.json` so `1.0.0` becomes `1.1.0`.
 - For a main version, run `BUMP=major node scripts/bump-version.mjs` instead (`1.4.0` → `2.0.0`), or put `[major]` in the commit message so GitHub can bump it.
-- The first versioned commit is v1.0.0: skip the bump script for that commit only.
+- The first versioned commit is v1.0.0: skip the bump script for that commit only. A later note that still belongs to the current version, such as the v1.0 changelog, uses `[keep-version]` in the commit message so GitHub does not bump it.
 - After the commit, push to `origin` `main`. That push tags the version and deploys Netlify.
 - Do not pass `--no-verify`.
 - Do not edit `index.html` or `partner/index.html` unless the user explicitly asks for a change to those pages.
