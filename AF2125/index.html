@@ -276,7 +276,7 @@ footer .colophon p{margin:0 0 2px}
   <div class="who" id="who"></div>
   Estimates only, not a guaranteed saving or a formal UW quotation. This is an independent UW partner's working tool, not an official UW system. Confirm current tariffs, standing charges, broadband offer eligibility, mobile plan prices, cashback terms, fees and contract terms before presenting a quote. The first-year figure includes any free broadband months and welcome bonus; second-year figures leave them out. Broadband figures include the April price rises entered for both providers; the current provider's rise is an assumption. All figures assume prices and usage stay the same over the comparison period.
   <div class="colophon">
-    <p>Version 1.0. Initial release of the savings calculator and the partner page.</p>
+    <p>Version 1.1. The main page is the generic calculator. The personal page is at /AF2125.</p>
     <p>© 2026 Alex Cameron. All rights reserved.</p>
   </div>
 </footer>
@@ -297,7 +297,7 @@ footer .colophon p{margin:0 0 2px}
   // UW SIM prices: edit here when they change
   var PLANS={unl:{name:'Go Unlimited',price:13},ess:{name:'Go Essential',price:6}};
   var FREE_MONTHS=3;
-  var FIXED=null; // fixed partner details, or null for the generic version
+  var FIXED={"name": "Alex Cameron", "phone": "01449 516785", "link": "uw.partners/alex.cameron"}; // fixed partner details, or null for the generic version
   function partner(){
     if(FIXED)return FIXED;
     return {name:$('pd-n').value.trim(),phone:$('pd-p').value.trim(),link:$('pd-l').value.trim()};

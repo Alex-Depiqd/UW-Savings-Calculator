@@ -1,2 +1,12 @@
 [build]
   publish = "."
+
+[[redirects]]
+  from = "/partner"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/partner/"
+  to = "/"
+  status = 301

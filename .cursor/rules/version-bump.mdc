@@ -12,4 +12,4 @@ Versions live in `package.json` and as GitHub tags `vMAJOR.MINOR.0`. This projec
 - The first versioned commit is v1.0.0: skip the bump script for that commit only. A later note that still belongs to the current version, such as the v1.0 changelog, uses `[keep-version]` in the commit message so GitHub does not bump it.
 - After the commit, push to `origin` `main`. That push tags the version and deploys Netlify.
 - Do not pass `--no-verify`.
-- Do not edit `index.html` or `partner/index.html` unless the user explicitly asks for a change to those pages.
+- Do not edit `index.html` or `AF2125/index.html` unless the user explicitly asks for a change to those pages.
