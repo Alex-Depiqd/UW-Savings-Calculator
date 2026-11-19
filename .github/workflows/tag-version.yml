@@ -1,0 +1,54 @@
+name: Tag version
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Tag this version or bump to the next
+        env:
+          MAJOR: ${{ contains(github.event.head_commit.message, '[major]') }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          VERSION_IN_COMMIT=0
+          if [ "$(git rev-list --count HEAD)" -gt 1 ] && git diff HEAD^ HEAD -- package.json | grep -q '"version"'; then
+            VERSION_IN_COMMIT=1
+          fi
+
+          if [ "$VERSION_IN_COMMIT" -eq 1 ]; then
+            if git ls-remote --tags origin "refs/tags/$TAG" | grep -q "refs/tags/$TAG$"; then
+              echo "Tag $TAG already exists"
+              exit 0
+            fi
+            git tag -a "$TAG" -m "Release $TAG"
+            git push origin "$TAG"
+            exit 0
+          fi
+
+          if [ "$MAJOR" = "true" ]; then
+            BUMP=major node scripts/bump-version.mjs
+          else
+            node scripts/bump-version.mjs
+          fi
+
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          git add package.json
+          git commit -m "Release $TAG"
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin HEAD
+          git push origin "$TAG"
