@@ -10,3 +10,13 @@
   from = "/partner/"
   to = "/"
   status = 301
+
+[[headers]]
+  for = "/*.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+
+[[headers]]
+  for = "/AF2125/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"

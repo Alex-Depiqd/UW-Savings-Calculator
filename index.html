@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UW Savings Calculator</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#7a42c8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Savings Calculator">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Young+Serif&display=swap" rel="stylesheet">
 <style>
@@ -276,7 +283,7 @@ footer .colophon p{margin:0 0 2px}
   <div class="who" id="who"></div>
   Estimates only, not a guaranteed saving or a formal UW quotation. This is an independent UW partner's working tool, not an official UW system. Confirm current tariffs, standing charges, broadband offer eligibility, mobile plan prices, cashback terms, fees and contract terms before presenting a quote. The first-year figure includes any free broadband months and welcome bonus; second-year figures leave them out. Broadband figures include the April price rises entered for both providers; the current provider's rise is an assumption. All figures assume prices and usage stay the same over the comparison period.
   <div class="colophon">
-    <p>Version 1.4.</p>
+    <p>Version 1.5.</p>
     <p>© 2026 Alex Cameron. All rights reserved.</p>
   </div>
 </footer>
@@ -511,6 +518,7 @@ footer .colophon p{margin:0 0 2px}
   try{if(window.claude&&claude.use)claude.use('downloads').then(function(d){if(d){dl=d;$('ov-save').classList.remove('hide')}},function(){})}catch(e){}
 
   initPartner();buildPhones();calc();
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js');
 })();
 </script>
 </body>
